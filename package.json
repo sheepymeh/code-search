@@ -1,0 +1,123 @@
+{
+  "name": "code-search",
+  "displayName": "code-search",
+  "description": "Local, semantic search for your VS Code symbols",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.88.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "code-search.indexWorkspace",
+        "title": "Code Search: Index workspace"
+      },
+      {
+        "command": "code-search.resetIndex",
+        "title": "Code Search: Reset indices and embeddings"
+      },
+      {
+        "command": "code-search.openSearchView",
+        "title": "Code Search: Open search view"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "code-search",
+          "title": "Code Search",
+          "icon": "icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "code-search": [
+        {
+          "type": "webview",
+          "id": "code-search.search",
+          "name": "Embeddings Search"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Code Search",
+      "properties": {
+        "code-search.initOnWorkspaceStart": {
+          "type": "boolean",
+          "default": true,
+          "description": "Begin indexing once a workspace is opened"
+        },
+        "code-search.maxIndexedFiles": {
+          "type": "number",
+          "default": 0,
+          "description": "Maximum number of files to index (0 for no limit)"
+        },
+        "code-search.backend": {
+          "type": "string",
+          "default": "http://localhost:9100",
+          "description": "URL of the backend server"
+        },
+        "code-search.embeddings.model": {
+          "type": "string",
+          "enum": [
+            "jina"
+          ],
+          "enumDescriptions": [
+            "jinaai/jina-embeddings-v2-base-code"
+          ],
+          "default": "jina",
+          "description": "Model to use to generate code embeddings"
+        },
+        "code-search.embeddings.batchSize": {
+          "type": "integer",
+          "default": 4,
+          "description": "Batch size when indexing code embeddings"
+        },
+        "code-search.exclude": {
+          "type": "string",
+          "default": "**/{.*,venv,__pycache__,node_modules,bower_components,jspm_packages}/**",
+          "description": "Patterns excluded from indexing"
+        },
+        "code-search.include": {
+          "type": "string",
+          "default": "**/*.{js,jsx,ts,tsx,mjs,py}",
+          "description": "Patterns included in indexing"
+        }
+      }
+    },
+    "keybindings": [
+      {
+        "command": "code-search.openSearchView",
+        "key": "ctrl+alt+f",
+        "mac": "cmd+alt+f",
+        "when": "editorTextFocus"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint src --ext ts"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.6",
+    "@types/node": "18.x",
+    "@types/vscode": "^1.88.0",
+    "@typescript-eslint/eslint-plugin": "^7.4.0",
+    "@typescript-eslint/parser": "^7.4.0",
+    "eslint": "^8.57.0",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@vscode/codicons": "^0.0.36",
+    "minimatch": "^9.0.4"
+  }
+}

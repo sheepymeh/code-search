@@ -1,0 +1,88 @@
+*, *::before, *::after {
+	box-sizing: border-box;
+}
+
+html {
+	margin-right: 8px;
+}
+body {
+	padding: 0;
+}
+
+input {
+	appearance: none;
+	background-color: var(--vscode-input-background);
+	border: 1px solid var(--vscode-input-border);
+	color: var(--vscode-input-foreground);
+	padding: 4px 6px;
+	margin: 0 20px;
+	width: calc(100% - 40px);
+	border-radius: 2px;
+	font: inherit;
+	display: block;
+}
+
+input::placeholder {
+	color: var(--vscode-input-placeholderForeground);
+}
+
+input:focus {
+	background-color: var(--vscode-input-activeBackground);
+	border-color: var(--vscode-focusBorder);
+	color: var(--vscode-input-activeForeground);
+	outline: none;
+}
+
+#tree ul {
+	list-style-type: none;
+}
+
+#tree > ul {
+	padding-left: 0;
+}
+
+#tree summary, #tree li {
+	white-space: nowrap;
+	overflow-x: hidden;
+	text-overflow: ellipsis;
+}
+
+
+#tree details {
+	cursor: pointer;
+}
+#tree details:hover summary, #tree details li:hover {
+	background-color: var(--vscode-list-hoverBackground);
+}
+
+#tree summary {
+	padding: 4px 20px;
+}
+
+#tree details ul {
+	position: relative;
+	padding: 0;
+}
+#tree details ul::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 24px;
+	bottom: 0;
+	width: 2px;
+	background-color: var(--vscode-list-activeSelectionBackground);
+}
+#tree details li {
+	padding: 4px 20px 4px 36px;
+}
+
+#tree li:focus, #tree summary:focus {
+	background-color: var(--vscode-list-activeSelectionBackground);
+}
+
+#tree .empty-tree {
+	font-weight: semibold;
+	color: var(--vscode-descriptionForeground);
+	padding: 20px;
+	display: block;
+}
