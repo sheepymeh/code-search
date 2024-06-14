@@ -67,10 +67,12 @@
         "code-search.embeddings.model": {
           "type": "string",
           "enum": [
-            "jina"
+            "jina",
+            "gte"
           ],
           "enumDescriptions": [
-            "jinaai/jina-embeddings-v2-base-code"
+            "jinaai/jina-embeddings-v2-base-code",
+            "Alibaba-NLP/gte-large-en-v1.5"
           ],
           "default": "jina",
           "description": "Model to use to generate code embeddings"

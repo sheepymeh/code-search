@@ -52,7 +52,7 @@
 		switch (e.data.type) {
 			case 'results':
 				let newTree;
-				if (e.data.results.length) {
+				if (Object.keys(e.data.results).length) {
 					let files = {};
 					for (const [result, score] of Object.entries(e.data.results)) {
 						const [file, symbol] = result.split(':');
